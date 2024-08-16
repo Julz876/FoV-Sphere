@@ -1,100 +1,69 @@
 # FoV-Sphere
-A Blender add-on to be used for determining the correct Field of View (FoV) and Aspect Ratio (via the Width) when importing a scene that was ripped with Ninja Ripper 2. Download here: https://github.com/CCrashCup/FoV-Sphere/releases
 
+A Blender add-on designed for determining the correct Field of View (FoV) and Aspect Ratio when importing a scene ripped with NR 2.
 
-This is a two part process. The first part is for calculating the correct FoV_Y value to use when importing using World Space. The second part is for calculating the correct Width value to use when importing. Each part requires two (2) imports to be made with different test values. The resulting sphere mesh dimesions of these imports will be used in the calculations. To arrive at the correct import values, click on each numbered step in the panel, supplying the values used during the import where required. The same sphere mesh file will be used every time. Each import requires a different import value to be used. Make sure the imported mesh is the Active selected mesh. Before each subsequent import, delete the mesh, after all the steps before have been taken. To help keep track of where you are in the steps, each step is not active until the prior one has been done. The current step will be flagged with a yellow dot. The two (2) final correct values are flagged with red dots, which will turn green when each procedure successfully completes.
+### [Download the Add-on](https://github.com/Julz876/FoV-Sphere/releases)
 
-Note: Do NOT change the Height import value during this entire process, or the calculated final values will not be correct
+### Purpose:
+To calculate the correct FoV_Y value to use when importing using World Space. The correct Width value should be obtained from the `_log.txt` outputted by Ninja Ripper (NR) and used when importing.
 
-Quick Use Chart (Normal Mode)
+- **Find Width and Height:** 
+  - Open the `_log.txt` file and search for "backbuffer." 
+  - Use the width and height values found there.
 
-FoV_Y Calculator
+### Requirements:
+- Two imports must be made with different FoV values.
+- The resulting sphere mesh dimensions of these imports will be used in the calculations.
+- **Important:** The same sphere mesh file should be used for all imports. 
+- **Note:** Do **NOT** change the Height import value during the process, or the calculated final values will be incorrect.
 
-1.  Do 1st FoV_Y Import (Reset)                                                                            
-   In the Importer settings, be sure to choose "Geometry Load:" [Reprojection (Full)]. Use the Width and Height values from the log file, or you can supply higher values for better precision.
+---
 
-2. Enter FoV_Y used                                                                            
-   Enter the value from the first FoV_Y import.
+### Quick Use Guide:
 
-3. Do 2nd FoV_Y Import                                                                            
-   Ready to get another import with a different FoV_Y value.
+#### **FoV_Y Calculator**
+1. **Do 1st FoV_Y Import:**
+   - In the Importer settings, use the Width and Height values from the log file, or you can supply higher values for better precision.
 
-4. Enter FoV_Y used                                                                            
-   Enter the value from the second FoV_Y import.
+2. **Enter FoV_Y used:**
+   - Input the value from the first FoV_Y import.
 
-5. Do FoV_Y Calculation                                                                            
-   Performs the calculation and puts the result in the next step.
+3. **Do 2nd FoV_Y Import:**
+   - Perform another import using a different FoV_Y value.
 
-6. Correct FoV_Y                                                                            
-   If it worked correctly, copy this value to use for all imports of this scene.
-   
+4. **Enter FoV_Y used:**
+   - Input the value from the second FoV_Y import.
 
-Width Calculator
+5. **Do FoV_Y Calculation:**
+   - Run the calculation, and the result will be displayed in the next step.
 
-7. Do 1st Width Import (Reset)                                                                            
-   Be sure to use the Correct FoV_Y value from the previous calculation.
+6. **Correct FoV_Y:**
+   - If everything worked correctly, copy this value and use it for all imports of this scene.
 
-8. Enter Width used                                                                            
-    Enter the value from the first Width import.
+---
 
-9. Do 2nd Width Import                                                                            
-    Get another import using a different Width value.
+### Detailed Step-by-Step Instructions:
 
-10. Enter Width used                                                                            
-    Enter the value from the second Width import.
+1. **Import the Sphere Mesh:**
+   - Use the first FoV value and the Width and Height from the log file. 
+   - Do not change the Height value once you start.
 
-11. Do Width Calculation                                                                            
-    Performs the calculation and puts the result in the next step.
+2. **Enter the 1st FoV Value:**
+   - After the first import, enter the FoV value into "1st FoV."
 
-12. Correct Width                                                                            
-    If it worked correctly, copy this value to use for all imports of this scene.
+3. **Import the Sphere Mesh Again:**
+   - Use the second FoV value and the same Width and Height.
 
-Now import one last time (hopefully) using the two calculated values. This time you will import all the meshes you need. To verify the results, select the original sphere object and check its dimensions.
+4. **Enter the 2nd FoV Value:**
+   - After the second import, enter the FoV value into "2nd FoV."
 
+5. **Calculate and Copy the Final FoV:**
+   - Copy the calculated value from "Final FoV."
 
-# Step by step instructions without explanation.
+6. **Delete the Imported Meshes:**
+   - Clear the scene to prepare for the final imports.
 
-Import the sphere mesh file with the first FoV value and the first Width and Height. Never change the Height value once you start.
+7. **Import All Mesh Files:**
+   - Use the calculated FoV value and the same Width and Height values from the log file.
 
-Click Step 1.
-
-Enter the first FoV value from the first import into Step 2.
-
-Delete the mesh.
-
-Import the sphere mesh file with the second FoV value and the same Width and Height.
-
-Click step 3.
-
-Enter the second FoV value from the second import into Step 4.
-
-Click Step 5.
-
-Copy the calculated FoV Value from Step 6.
-
-Delete the mesh.
-
-Import the sphere mesh file with the copied calculated FoV value and the same Width and Height.
-
-Click Step 7.
-
-Enter the first Width value from the third import into Step 8.
-
-Delete the mesh.
-
-Import the sphere mesh file with the copied calculated FoV value and the second Width with the same Height.
-
-Click step 9.
-
-Enter the second Width value from the fourth import into Step 10.
-
-Click Step 11.
-
-Copy the calculated Width Value from Step 12.
-
-Delete mesh.
-
-Import all the mesh files with the copied calculated FoV value and the copied calculated Width value with the same Height.
-
-Done. 
-
+8. **Done!**
