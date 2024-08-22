@@ -1,5 +1,7 @@
 #
-#  FOV Sphere by Lofty   (This is designed for use with a SPHERE object.)
+#  FOV Sphere by Lofty
+#  Modified and updated by KingxJulz
+#  (This is designed for use with a SPHERE object.)
 # 
 #      This add-on is used to calculate the correct Reprojection (Full)
 #      FOV_Y import method parameters by comparing the data from two imports,
