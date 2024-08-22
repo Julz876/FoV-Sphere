@@ -1,5 +1,8 @@
 #
-#  FOV Sphere by Lofty   (This is designed for use with a SPHERE object.)
+#  FOV Spear by Lofty
+#  Modified and updated by KingxJulz
+#  (Changed the naming so it can coexist with FoV Sphere.)
+#  (This is designed for use with a SPHERE object.)
 # 
 #      This add-on is used to calculate the correct Reprojection (Full)
 #      FOV_Y import method parameters by comparing the data from two imports,
@@ -12,7 +15,7 @@ from bpy.types import (PropertyGroup, Panel, Operator)
 import math
 
 bl_info = {
-    "name": "FoV Sphere",
+    "name": "FoV Spear",
     "blender": (3, 0, 0),
     "category": "Object",
     "author": "Lofty, KingxJulz",
@@ -22,7 +25,7 @@ bl_info = {
 
 v_precise = 6
 
-class FOVProperties(bpy.types.PropertyGroup):
+class FOVSpearProperties(bpy.types.PropertyGroup):
 
     base_fov_float: FloatProperty(name="1st FoV_Y", precision=v_precise, default=45.0)
     test_fov_float: FloatProperty(name="2nd FoV_Y", precision=v_precise, default=20.0)
@@ -57,16 +60,16 @@ class FOVProperties(bpy.types.PropertyGroup):
         return fov_final, None
 
 
-class FOV_PT_Panel(bpy.types.Panel):
+class FOVSpear_PT_Panel(bpy.types.Panel):
     bl_label = "FoV Calculator"
     bl_idname = "FOV_PT_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "FoV Sphere"
+    bl_category = "FoV Spear"
 
     def draw(self, context):
         layout = self.layout
-        fovtool = context.scene.my_tool
+        fovtool = context.scene.fovs_tool
 
         layout.label(text="Imported Sphere")
         layout.prop(fovtool, "base_fov_float", text="1st FoV_Y")
@@ -79,12 +82,12 @@ class FOV_PT_Panel(bpy.types.Panel):
             layout.label(text="FoV Calculation not complete", icon='ERROR')
 
 
-class FOV_OT_CalculateFoV(Operator):
+class FOVSpear_OT_CalculateFoV(Operator):
     bl_label = "Calculate FoV_Y"
     bl_idname = "fovcalc.calculate_fov"
 
     def execute(self, context):
-        fovtool = context.scene.my_tool
+        fovtool = context.scene.fovs_tool
         fov_final, error = fovtool.calculate_fov(context)
         
         if error:
@@ -97,7 +100,7 @@ class FOV_OT_CalculateFoV(Operator):
 
 
 classes = [
-    FOVProperties,
+    FOVSProperties,
     FOV_PT_Panel,
     FOV_OT_CalculateFoV,
 ]
@@ -106,13 +109,13 @@ classes = [
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
-    bpy.types.Scene.my_tool = bpy.props.PointerProperty(type=FOVProperties)
+    bpy.types.Scene.fovspear_tool = bpy.props.PointerProperty(type=FOVSpearProperties)
 
 
 def unregister():
     for cls in classes:
         bpy.utils.unregister_class(cls)
-    del bpy.types.Scene.my_tool
+    del bpy.types.Scene.fovspear_tool
 
 
 if __name__ == "__main__":
